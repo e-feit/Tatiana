@@ -42,6 +42,10 @@ python -m pytest tests/
 ```
 
 # Adding/removing dependencies
+Make sure you are using `venv` before making any changes.
+```
+. venv/bin/activate
+```
 To add dependencies use pip.
 ```
 pip install Flask-Assets
