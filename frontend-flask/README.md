@@ -20,6 +20,9 @@ export FLASK_APP=app.py
 # if needed you can activate the "development" environment e.g. for debugging purposes
 export FLASK_ENV=development
 
+# To activate auto-reloading on file changes
+export FLASK_DEBUG=1
+
 # start app
 flask run
 
