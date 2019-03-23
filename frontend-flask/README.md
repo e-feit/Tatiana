@@ -36,3 +36,20 @@ then you can execute tests like this.
 ```
 python -m pytest tests/
 ```
+
+# Adding/removing dependencies
+To add dependencies use pip.
+```
+pip install Flask-Assets
+```
+
+After that you have to update `requirements.txt`.
+```
+pip freeze > requirements.txt
+```
+
+If you remove any dependency you have to update `requirements.txt` as well.
+```
+pip uninstall Flask-Assets
+pip freeze > requirements.txt
+```
