@@ -13,6 +13,15 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1/tatiana?charset=utf8'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    app.config['MAINTENANCE_MODE'] = True
+    app.config['MAINTENANCE_TOKEN'] = 'abc'
+
+    app.config['SECRET_KEY'] = 'some secret key'
+    app.secret_key = app.config['SECRET_KEY']
+
+    if app.config['MAINTENANCE_MODE']:
+        app.logger.warn('Maintenance mode is active! ' + 'You can access it under: /maintenance/?token=' + app.config['MAINTENANCE_TOKEN'])
+
     # Здесь должны быть зарегистрированы все blueprints.
     # При создании нового, не забываем указать его здесь.
     app.register_blueprint(home_blueprint)
