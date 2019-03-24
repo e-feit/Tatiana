@@ -1,7 +1,7 @@
 from flask import Flask
 
-from .home.views import mod as home_blueprint
-from .page_2.views import mod as page_2_blueprint
+from .home.route import blueprint as home_blueprint
+from .page_2.route import blueprint as page_2_blueprint
 
 def create_app():
     app = Flask(__name__)
