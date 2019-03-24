@@ -1,62 +1,64 @@
-# Requirements
+# Требования
 * Python 3
 
-# Installation
-Create new `venv` and install dependencies.
+# Установка
+Создать новый `venv` и установить необходимые зависимости.
 ```
 python3 -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Starting application
+# Запуск
 ```
-# activate venv if not done yet
+# активировать venv, если еще не сделано
 . venv/bin/activate
 
-# export app variable
+# указать перменную
 export FLASK_APP=app.py
 
-# start app
+# запуск
 flask run
 
-# exit venv after you're done
+# выйти из venv, если закончили работу
 deactivate
 ```
 
-# Developing
-Useful developer options can be activated before running application.
+# Разработка
+Полезные для разработки конфиги (должны быть установлены перед запуском).
 ```
-# Activate debugging
+# активировать дебаггер
 export FLASK_ENV=development
 
-# Auto-reloading on file changes
+# авто обновление при изменении файлов
 export FLASK_DEBUG=1
 ```
 
-# Running tests
-Make sure you are using `venv`, all dependencies are installed, 
-then you can execute tests like this.
+# Запустить тесты
+Перед запуском не забыть войти в `venv`, все зависимости так же должны быть установлены 
+(см. п. Установка).
+
+Тесты запускаются командой:
 ```
 python -m pytest app/
 ```
 
-# Adding/removing dependencies
-Make sure you are using `venv` before making any changes.
+# Добавить/удалить зависимости
+Опять же, не забыть войти в `venv`.
 ```
 . venv/bin/activate
 ```
-To add dependencies use pip.
+Для добавления новых зависимостей используем `pip`.
 ```
 pip install Flask-Assets
 ```
 
-After that you have to update `requirements.txt`.
+После этого обязательно нужно обновить файл `requirements.txt`.
 ```
 pip freeze > requirements.txt
 ```
 
-If you remove any dependency you have to update `requirements.txt` as well.
+Если что-то удаляем, то так же не забываем обновить `requirements.txt`.
 ```
 pip uninstall Flask-Assets
 pip freeze > requirements.txt
