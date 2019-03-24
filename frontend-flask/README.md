@@ -38,7 +38,7 @@ export FLASK_DEBUG=1
 Make sure you are using `venv`, all dependencies are installed, 
 then you can execute tests like this.
 ```
-python -m pytest tests/
+python -m pytest app/tests/
 ```
 
 # Adding/removing dependencies
