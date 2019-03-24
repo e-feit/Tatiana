@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 
 from app.db.models import db
 from .home.route import blueprint as home_blueprint
@@ -17,5 +18,7 @@ def create_app():
     app.register_blueprint(page_2_blueprint, url_prefix="/page-2")
 
     db.init_app(app)
+
+    migrate = Migrate(app, db)
 
     return app

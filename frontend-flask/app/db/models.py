@@ -2,6 +2,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy(session_options={'autocommit': True})
 
+# Здесь все модели, соответствующие таблицам в БД.
+# Любое изменение нужно будет обновить в миграциях (см. README).
+
 class User(db.Model):
     __tablename__ = 'users'
 
