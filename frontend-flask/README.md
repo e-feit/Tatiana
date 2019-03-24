@@ -87,7 +87,7 @@ flask db upgrade
 
 Тесты запускаются командой:
 ```
-python -m pytest app/
+python -m pytest -v app/
 ```
 
 # Добавить/удалить зависимости
