@@ -1,5 +1,6 @@
 # Требования
 * Python 3
+* MySQL 5.5+/MariaDB 5.5+
 
 # Установка
 Создать новый `venv` и установить необходимые зависимости.
@@ -17,13 +18,10 @@ pip install -r requirements.txt
 # создать все нужные таблицы в БД (необходимо делать после каждого обновления)
 flask db upgrade
 
-# указать перменную
-export FLASK_APP=app.py
+# указать перменную и запустить
+export FLASK_APP=app.py; flask run
 
-# запуск
-flask run
-
-# выйти из venv, если закончили работу
+# выйти из venv, если нужно
 deactivate
 ```
 

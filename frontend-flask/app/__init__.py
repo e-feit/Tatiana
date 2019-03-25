@@ -20,7 +20,7 @@ def create_app():
     app.secret_key = app.config['SECRET_KEY']
 
     if app.config['MAINTENANCE_MODE']:
-        app.logger.warn('Maintenance mode is active! ' + 'You can access it under: /maintenance/?token=' + app.config['MAINTENANCE_TOKEN'])
+        app.logger.info('Maintenance mode is active! ' + 'You can access it under: /maintenance/?token=' + app.config['MAINTENANCE_TOKEN'])
 
     # Здесь должны быть зарегистрированы все blueprints.
     # При создании нового, не забываем указать его здесь.
