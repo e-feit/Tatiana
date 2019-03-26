@@ -1,10 +1,13 @@
 from flask import Flask
+from flask_login import LoginManager
 from flask_migrate import Migrate
 
-from app.db.models import db
+from app.db.models import db, User
 from .home.route import blueprint as home_blueprint
 from .page_2.route import blueprint as page_2_blueprint
 from .maintenance.route import blueprint as maintenance_blueprint
+
+login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
@@ -29,7 +32,13 @@ def create_app():
     app.register_blueprint(maintenance_blueprint, url_prefix ='/maintenance')
 
     db.init_app(app)
+    login_manager.init_app(app)
 
     migrate = Migrate(app, db)
 
     return app
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.filter_by(id=user_id).first()
