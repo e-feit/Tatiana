@@ -6,6 +6,17 @@ from app.pages.login.login_form import LoginForm
 
 blueprint = Blueprint(__name__, __name__, template_folder='.', static_folder='assets')
 
+
+def flash_errors(form):
+    """Flashes form errors"""
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ), 'error')
+
+
 @blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     # Если юзер уже и так залогинен, то редиректим на главную
@@ -23,7 +34,8 @@ def login():
             return redirect('/')
         else:
             flash('Wrong login or password!', 'error')
-
+    else:
+        flash_errors(form)
     return render_template('login.html', title='Sign In', form=form)
 
 @blueprint.route('/logout', methods=['GET'])
