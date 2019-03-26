@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect
+from flask import render_template, Blueprint, redirect, flash
 from flask_login import login_user, login_required, current_user, logout_user
 
 from app import User
@@ -22,7 +22,7 @@ def login():
             login_user(user)
             return redirect('/')
         else:
-            return 'Login or password wrong!', 401
+            flash('Wrong login or password!', 'error')
 
     return render_template('login.html', title='Sign In', form=form)
 
