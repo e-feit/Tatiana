@@ -4,6 +4,7 @@
 
 <h1>Hello, World!</h1>
 <p>Page 1</p>
-<a href={{ url_for('app.pages.page_2.route.page_2') }}>Page 2</a>
+<p><a href={{ url_for('app.pages.page_2.page_2.page_2') }}>Page 2</a></p>
+<p><a onclick="if (!confirm('Are you sure?')) return false;" href={{ url_for('app.pages.login.login.logout') }}>Logout</a></p>
 
 {% endblock %}

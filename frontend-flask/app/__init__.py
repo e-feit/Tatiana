@@ -1,11 +1,12 @@
-from flask import Flask
+from flask import Flask, redirect
 from flask_login import LoginManager
 from flask_migrate import Migrate
 
 from app.db.models import db, User
-from app.pages.home.route import blueprint as home_blueprint
-from app.pages.page_2.route import blueprint as page_2_blueprint
-from app.pages.maintenance.route import blueprint as maintenance_blueprint
+from app.pages.home.home import blueprint as home_blueprint
+from app.pages.login.login import blueprint as login_blueprint
+from app.pages.page_2.page_2 import blueprint as page_2_blueprint
+from app.pages.maintenance.maintenance import blueprint as maintenance_blueprint
 
 login_manager = LoginManager()
 
@@ -27,6 +28,7 @@ def create_app():
 
     # Здесь должны быть зарегистрированы все blueprints.
     # При создании нового, не забываем указать его здесь.
+    app.register_blueprint(login_blueprint)
     app.register_blueprint(home_blueprint)
     app.register_blueprint(page_2_blueprint, url_prefix = '/page-2')
     app.register_blueprint(maintenance_blueprint, url_prefix ='/maintenance')
@@ -42,3 +44,7 @@ def create_app():
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
+
+@login_manager.unauthorized_handler
+def handle_unauthorized():
+    return redirect('/login')
