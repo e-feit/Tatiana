@@ -3,9 +3,9 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 
 from app.db.models import db, User
-from .home.route import blueprint as home_blueprint
-from .page_2.route import blueprint as page_2_blueprint
-from .maintenance.route import blueprint as maintenance_blueprint
+from app.pages.home.route import blueprint as home_blueprint
+from app.pages.page_2.route import blueprint as page_2_blueprint
+from app.pages.maintenance.route import blueprint as maintenance_blueprint
 
 login_manager = LoginManager()
 
