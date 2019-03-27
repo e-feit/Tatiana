@@ -5,6 +5,9 @@
 	{% assets "scss_all" %}
 	<link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
 	{% endassets %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/legacy.css') }}">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css' />
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}" />
 </head>
 <body>
 	{% block content %}{% endblock %}
