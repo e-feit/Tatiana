@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 
+{% block title %}Двери закрыты...{% endblock %}
+
 {% block content %}
-<h1>Логин</h1>
-<form action="" method="post" novalidate>
-	{{ form.hidden_tag() }}
-	<p>
-		{{ form.login(size=32, placeholder="Логин") }}
-	</p>
-	<p>
-		{{ form.password(size=32, placeholder="Пароль") }}
-	</p>
-	<p>{{ form.submit() }}</p>
-</form>
+<div class="login-page">
+	<form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+		<div class="form-section form-section--caption">
+			<h1>Кто там?</h1>
+		</div>
+		<div class="form-section">
+			<div>
+				{{ form.login(size=32, placeholder="Логин", class="textfield") }}
+			</div>
+			<div>
+				{{ form.password(size=32, placeholder="******", class="textfield") }}
+			</div>
+			<div>{{ form.submit(class="btn") }}</div>
+		</div>
+	</form>
+</div>
+
 
 {% include "flashes.html" %}
 

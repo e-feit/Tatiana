@@ -24,6 +24,7 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'some secret key'
     app.secret_key = app.config['SECRET_KEY']
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     if app.config['MAINTENANCE_MODE']:
         app.logger.info('Maintenance mode is active! ' + 'You can access it under: /maintenance/?token=' + app.config['MAINTENANCE_TOKEN'])
@@ -41,8 +42,18 @@ def create_app():
     migrate = Migrate(app, db)
 
     assets = Environment(app)
+    # assets.manifest = False
+    # assets.cache = False
+    # assets.auto_build = True
     assets.url = app.static_url_path
-    scss = Bundle('scss/main.scss', filters='pyscss', output='styles/style.css')
+    scss = Bundle(
+
+        # здесь нужно указать все файлы .scss
+        'scss/reset.scss',
+        'scss/base.scss',
+        'scss/pages/login.scss',
+
+        filters='pyscss', output='styles/style.css')
     assets.register('scss_all', scss)
 
     return app

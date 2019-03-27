@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tatiana</title>
+	<title>{% block title %}{% endblock %}</title>
 	{% assets "scss_all" %}
 	<link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
 	{% endassets %}
