@@ -4,7 +4,7 @@ from flask_login import login_user, login_required, current_user, logout_user
 from app import User
 from app.pages.login.login_form import LoginForm
 
-blueprint = Blueprint(__name__, __name__, template_folder='.', static_folder='assets')
+blueprint = Blueprint(__name__, __name__, template_folder='.')
 
 
 def flash_errors(form):

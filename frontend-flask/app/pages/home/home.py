@@ -3,7 +3,7 @@ from flask_login import login_user, login_required
 
 from app.db.models import User
 
-blueprint = Blueprint(__name__, __name__, template_folder='.', static_folder='assets')
+blueprint = Blueprint(__name__, __name__, template_folder='.')
 
 @blueprint.route('/')
 @login_required

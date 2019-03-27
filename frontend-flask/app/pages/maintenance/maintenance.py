@@ -3,7 +3,7 @@ import functools
 import flask
 from flask import render_template, Blueprint, session
 
-blueprint = Blueprint(__name__, __name__, template_folder='.', static_folder='assets')
+blueprint = Blueprint(__name__, __name__, template_folder='.')
 
 def admin_only(f):
     @functools.wraps(f)

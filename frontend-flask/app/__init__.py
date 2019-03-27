@@ -1,6 +1,8 @@
 from flask import Flask, redirect
+from flask_assets import Environment
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from webassets import Bundle
 
 from app.db.models import db, User
 from app.pages.home.home import blueprint as home_blueprint
@@ -12,7 +14,7 @@ login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
-    app.static_folder = 'assets'
+    app.static_folder = 'static'
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1/tatiana?charset=utf8'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -37,6 +39,11 @@ def create_app():
     login_manager.init_app(app)
 
     migrate = Migrate(app, db)
+
+    assets = Environment(app)
+    assets.url = app.static_url_path
+    scss = Bundle('scss/main.scss', filters='pyscss', output='styles/style.css')
+    assets.register('scss_all', scss)
 
     return app
 
