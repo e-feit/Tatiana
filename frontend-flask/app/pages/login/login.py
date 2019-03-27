@@ -33,7 +33,7 @@ def login():
             login_user(user)
             return redirect('/')
         else:
-            flash('Wrong login or password!', 'error')
+            flash('Неправильный логин или пароль!', 'error')
     else:
         flash_errors(form)
     return render_template('login.html', title='Sign In', form=form)
