@@ -1,3 +1,7 @@
+# Todo
+* меню
+* bcrypt для паролей
+
 # Требования
 * Python 3
 * MySQL 5.5+/MariaDB 5.5+

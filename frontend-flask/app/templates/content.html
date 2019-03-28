@@ -4,6 +4,25 @@
 
 {% block body %}
 
+<nav class="navbar">
+	<div class="navbar__item navbar__item--clickable" id="logout-btn">
+		Выход
+	</div>
+</nav>
+
+<div class="content">
 {% block content %}{% endblock %}
+</div>
+
+<script>
+	(() => {
+		document.querySelector('#logout-btn').addEventListener('click', async () => {
+			if (confirm('Что, уже?')) {
+				await fetch('/logout');
+				location.reload();
+			}
+		});
+	})();
+</script>
 
 {% endblock %}

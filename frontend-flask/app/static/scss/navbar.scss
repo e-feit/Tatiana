@@ -1,7 +1,36 @@
-.navar {
-	$navbar-height: 48px;
+$navbar-height: 48px;
+
+.navbar {
+	background-color: #222729;
+	box-shadow: 0px 4px 12px 4px rgba(0,0,0,0.75);
+	color: white;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row-reverse;
+	height: $navbar-height;
+	position: fixed;
+	top: 0;
+	width: 100%;
+
+	&__item {
+		line-height: $navbar-height;
+		padding: 0 20px;
+
+		&--clickable {
+			cursor: pointer;
+
+			&:hover {
+				background-color: #494f51;
+			}
+		}
+	}
 }
 
 .sidebar {
 
+}
+
+.content {
+	padding: 20px;
+	margin-top: $navbar-height;
 }
