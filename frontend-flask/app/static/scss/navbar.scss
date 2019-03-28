@@ -6,15 +6,20 @@ $navbar-height: 48px;
 	color: white;
 	display: flex;
 	flex-wrap: nowrap;
-	flex-direction: row-reverse;
+	flex-direction: row;
 	height: $navbar-height;
 	position: fixed;
 	top: 0;
 	width: 100%;
+	justify-content: space-around;
 
 	&__item {
 		line-height: $navbar-height;
 		padding: 0 20px;
+
+		&--dynamic-space {
+			flex-grow: 10;
+		}
 
 		&--clickable {
 			cursor: pointer;
@@ -23,6 +28,25 @@ $navbar-height: 48px;
 				background-color: #494f51;
 			}
 		}
+
+		&--active {
+			border-bottom: 5px solid #ff8b3d;
+		}
+
+		&.logout {
+			border-left: solid 1px #5a5a5a;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		&__label {
+			display: none;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		color: inherit;
 	}
 }
 

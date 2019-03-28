@@ -5,8 +5,18 @@
 {% block body %}
 
 <nav class="navbar">
-	<div class="navbar__item navbar__item--clickable" id="logout-btn">
-		Выход
+	<a class="navbar__item navbar__item--clickable {% if request.path == url_for('app.pages.home.home.home') %}navbar__item--active{% endif %}" href={{ url_for('app.pages.home.home.home') }}>
+		<i class="fas fa-home"></i> <span class="navbar__label">Главная</span>
+	</a>
+	<a class="navbar__item navbar__item--clickable {% if request.path == url_for('app.pages.page_2.page_2.page_2') %}navbar__item--active{% endif %}" href={{ url_for('app.pages.page_2.page_2.page_2') }}>
+		<i class="fas fa-tachometer-alt"></i> <span class="navbar__label">Датчики</span>
+	</a>
+	<a class="navbar__item navbar__item--clickable">
+		<i class="fas fa-cogs"></i> <span class="navbar__label">Настройки</span>
+	</a>
+	<div class="navbar__item navbar__item--dynamic-space"></div>
+	<div class="navbar__item navbar__item--clickable logout" id="logout-btn">
+		<i class="fas fa-sign-out-alt"></i>
 	</div>
 </nav>
 
