@@ -51,6 +51,7 @@ def create_app():
         # здесь нужно указать все файлы .scss
         'scss/reset.scss',
         'scss/base.scss',
+        'scss/navbar.scss',
         'scss/pages/login.scss',
 
         filters='pyscss', output='styles/style.css')
