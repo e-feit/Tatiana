@@ -22,7 +22,7 @@ def login():
             login_user(user)
             return redirect('/')
         else:
-            flash('Неправильный логин или пароль!', 'error')
+            flash('Неверный логин или пароль!', 'error')
 
     return render_template('login.html', title='Sign In', form=form)
 

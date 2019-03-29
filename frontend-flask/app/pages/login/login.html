@@ -11,10 +11,10 @@
 		</div>
 		<div class="form-section">
 			<div>
-				{{ form.login(size=32, placeholder="Логин", class="textfield") }}
+				{{ form.login(size=32, placeholder="Логин", class="textfield", required="required") }}
 			</div>
 			<div>
-				{{ form.password(size=32, placeholder="******", class="textfield") }}
+				{{ form.password(size=32, placeholder="******", class="textfield", required="required") }}
 			</div>
 			<div>{{ form.submit(class="btn") }}</div>
 		</div>
