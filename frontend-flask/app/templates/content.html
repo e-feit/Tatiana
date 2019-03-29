@@ -31,7 +31,7 @@
 	(() => {
 		document.querySelector('#logout-btn').addEventListener('click', async () => {
 			if (confirm('Что, уже?')) {
-				await fetch('/logout');
+				await fetch('/logout', { method: 'POST' });
 				location.reload();
 			}
 		});
