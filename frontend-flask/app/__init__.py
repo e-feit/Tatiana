@@ -49,6 +49,7 @@ def create_app():
     scss = Bundle(
 
         # здесь нужно указать все файлы .scss
+        'scss/variables.scss',
         'scss/reset.scss',
         'scss/base.scss',
         'scss/navbar.scss',

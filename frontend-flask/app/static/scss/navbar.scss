@@ -1,3 +1,5 @@
+@import "variables";
+
 $navbar-height: 48px;
 
 .navbar {
@@ -38,7 +40,7 @@ $navbar-height: 48px;
 		}
 	}
 
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: $breakpoint-tablet) {
 		&__label {
 			display: none;
 		}
@@ -57,4 +59,10 @@ $navbar-height: 48px;
 .content {
 	padding: 20px;
 	margin-top: $navbar-height;
+}
+
+@media only screen and (min-width: $breakpoint-desktop-large) {
+	.content {
+		padding: 20px 300px;
+	}
 }
