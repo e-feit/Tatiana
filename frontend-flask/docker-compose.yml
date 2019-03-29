@@ -16,6 +16,10 @@ services:
   tatiana:
     image: 'tatiana:latest'
     container_name: tatiana
+    environment:
+      TATIANA_DB_HOST: 'db'
+      TATIANA_DB_USERNAME: 'root'
+      TATIANA_DB_PASSWORD: ''
     depends_on:
       - db
     ports:

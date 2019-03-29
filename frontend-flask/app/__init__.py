@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, redirect
 from flask_assets import Environment
 from flask_login import LoginManager
@@ -17,8 +19,11 @@ def create_app():
     app = Flask(__name__)
     app.static_folder = 'static'
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1/tatiana?charset=utf8'
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@db/tatiana?charset=utf8'
+    db_host = os.getenv('TATIANA_DB_HOST', '127.0.0.1')
+    db_username = os.getenv('TATIANA_DB_USERNAME', 'root')
+    db_password = os.getenv('TATIANA_DB_PASSWORD', '')
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + db_username + ':' + db_password + '@' + db_host +'/tatiana?charset=utf8'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['MAINTENANCE_MODE'] = True
