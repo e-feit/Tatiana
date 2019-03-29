@@ -18,6 +18,7 @@ def create_app():
     app.static_folder = 'static'
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1/tatiana?charset=utf8'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@db/tatiana?charset=utf8'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['MAINTENANCE_MODE'] = True

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    container_name: tatiana-mysql
+    image: mysql:5.6
+    restart: always
+    command: --init-file /tmp/tatiana/init.sql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      MYSQL_DATABASE: 'tatiana'
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - /tmp/tatiana-mysql:/var/lib/mysql
+      - ./:/tmp/tatiana
+  tatiana:
+    image: 'tatiana:latest'
+    container_name: tatiana
+    depends_on:
+      - db
+    ports:
+      - 127.0.0.1:8080:8080

@@ -19,11 +19,11 @@ pip install -r requirements.txt
 Для удобств разработки Фласк поставляется с сервером Werkzeug. Этот сервер предназначен
 ТОЛЬКО для разработки на локальной машине (однопоточный и синхронный).
 
-Для запуска в продакшн можно использовать легкий WSGI сервер waitress, который готов
-к нормальным нагрузкам.
+Для запуска в продакшн используется легкий WSGI сервер waitress, который готов
+к нагрузкам.
 
 ```
-waitress-serve --call 'flaskr:create_app'
+python app.py
 ```
 
 После чего приложение будет доступно по адресу `http://0.0.0.0:8080`.
@@ -130,3 +130,6 @@ pip freeze > requirements.txt
 pip uninstall Flask-Assets
 pip freeze > requirements.txt
 ```
+
+## Docker
+_todo..._
