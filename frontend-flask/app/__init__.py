@@ -7,7 +7,8 @@ from webassets import Bundle
 from app.db.models import db, User
 from app.pages.home.home import blueprint as home_blueprint
 from app.pages.login.login import blueprint as login_blueprint
-from app.pages.page_2.page_2 import blueprint as page_2_blueprint
+from app.pages.planning.planning import blueprint as planning_blueprint
+from app.pages.events.events import blueprint as events_blueprint
 from app.pages.maintenance.maintenance import blueprint as maintenance_blueprint
 
 login_manager = LoginManager()
@@ -26,15 +27,13 @@ def create_app():
     app.secret_key = app.config['SECRET_KEY']
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-    if app.config['MAINTENANCE_MODE']:
-        app.logger.info('Maintenance mode is active! ' + 'You can access it under: /maintenance/?token=' + app.config['MAINTENANCE_TOKEN'])
-
     # Здесь должны быть зарегистрированы все blueprints.
     # При создании нового, не забываем указать его здесь.
     app.register_blueprint(login_blueprint)
     app.register_blueprint(home_blueprint)
-    app.register_blueprint(page_2_blueprint, url_prefix = '/page-2')
-    app.register_blueprint(maintenance_blueprint, url_prefix ='/maintenance')
+    app.register_blueprint(planning_blueprint)
+    app.register_blueprint(events_blueprint)
+    app.register_blueprint(maintenance_blueprint)
 
     db.init_app(app)
     login_manager.init_app(app)

@@ -3,7 +3,7 @@ from flask_login import login_required
 
 blueprint = Blueprint(__name__, __name__, template_folder='.')
 
-@blueprint.route('/')
+@blueprint.route('/events')
 @login_required
-def page_2():
-    return render_template('page_2.html')
+def index():
+    return render_template('events.html')
