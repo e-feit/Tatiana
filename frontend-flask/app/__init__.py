@@ -9,7 +9,7 @@ from webassets import Bundle
 from app.db.models import db, User
 from app.pages.home.home import blueprint as home_blueprint
 from app.pages.login.login import blueprint as login_blueprint
-from app.pages.planning.planning import blueprint as planning_blueprint
+from app.pages.scheduling.scheduling import blueprint as scheduling_blueprint
 from app.pages.events.events import blueprint as events_blueprint
 from app.pages.maintenance.maintenance import blueprint as maintenance_blueprint
 
@@ -37,7 +37,7 @@ def create_app():
     # При создании нового, не забываем указать его здесь.
     app.register_blueprint(login_blueprint)
     app.register_blueprint(home_blueprint)
-    app.register_blueprint(planning_blueprint)
+    app.register_blueprint(scheduling_blueprint)
     app.register_blueprint(events_blueprint)
     app.register_blueprint(maintenance_blueprint)
 

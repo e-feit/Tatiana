@@ -8,7 +8,7 @@
 	<a class="navbar__item navbar__item--clickable {% if request.path == url_for('app.pages.home.home.index') %}navbar__item--active{% endif %}" href={{ url_for('app.pages.home.home.index') }}>
 		<i class="fas fa-home"></i> <span class="navbar__label">Управление</span>
 	</a>
-	<a class="navbar__item navbar__item--clickable {% if request.path == url_for('app.pages.planning.planning.index') %}navbar__item--active{% endif %}" href={{ url_for('app.pages.planning.planning.index') }}>
+	<a class="navbar__item navbar__item--clickable {% if request.path == url_for('app.pages.scheduling.scheduling.index') %}navbar__item--active{% endif %}" href={{ url_for('app.pages.scheduling.scheduling.index') }}>
 		<i class="fas fa-clock"></i> <span class="navbar__label">Планирование</span>
 	</a>
 	<a class="navbar__item navbar__item--clickable {% if request.path == url_for('app.pages.events.events.index') %}navbar__item--active{% endif %}" href={{ url_for('app.pages.events.events.index') }}>
