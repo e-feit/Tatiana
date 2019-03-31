@@ -14,3 +14,12 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(120), nullable=False)
     username = db.Column(db.String(120), nullable=True)
     last_login = db.Column(db.DateTime(), nullable=True)
+
+class Scheduler(db.Model):
+    __tablename__ = 'plan'
+
+    id = db.Column(db.Integer, primary_key=True, comment='id строки плана')
+    pin = db.Column(db.SmallInteger, nullable=False, comment='выходной пин')
+    ontime = db.Column(db.CHAR(255), nullable=False, comment='время включения (hh:mm:ss)')
+    offtime = db.Column(db.CHAR(255), nullable=False, comment='время выключения (hh:mm:ss)')
+    calendar = db.Column(db.CHAR(255), nullable=False, default='3', comment='1-будни, 2-выхи, 3-ежедневно')
