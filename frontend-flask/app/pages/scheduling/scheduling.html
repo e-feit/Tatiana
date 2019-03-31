@@ -6,19 +6,36 @@
 
 <h1>Планирование</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.</p>
+<section>
+	<input type="time" step="1" id="start">
+	<input type="time" step="1" id="end">
+	<select id="type">
+		{% for key, value in scheduler_types.items() %}
+			<option value="{{key}}" {% if value.default_selected %} selected="selected" {% endif %}>{{value.label}}</option>
+		{% endfor %}
+	</select>
+	<button id="add">Записать в календарь</button>
+</section>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.</p>
+<script>
+	(() => {
+		document.querySelector('#add').addEventListener('click', async () => {
+			console.log('Add');
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi consequuntur cupiditate dolor error expedita illum itaque iure maiores mollitia nesciunt nihil, nobis optio perferendis porro quasi quis sint totam ut.</p>
+			const start = document.querySelector('#start').value;
+			const end = document.querySelector('#end').value;
+			const type = document.querySelector('#type').value;
+
+			await fetch('/scheduling', {
+				method: 'POST',
+				body: JSON.stringify({
+					start,
+					end,
+					type,
+				})
+			});
+		});
+	})();
+</script>
 
 {% endblock %}

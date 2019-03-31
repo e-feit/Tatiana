@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy(session_options={'autocommit': True})
+db = SQLAlchemy(session_options={'autocommit': True, 'autoflush': True})
 
 # Здесь все модели, соответствующие таблицам в БД.
 # Любое изменение нужно будет обновить в миграциях (см. README).
