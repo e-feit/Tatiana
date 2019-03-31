@@ -40,6 +40,11 @@ def add_scheduler_item():
 
     return json.dumps({}), 201
 
+@blueprint.route('/scheduling/all')
+@login_required
+def all_schedulers():
+    return json.dumps(Scheduler.serialize_list(get_all_schedulers()))
+
 @blueprint.route('/scheduling/<int:item_id>', methods=['DELETE'])
 @login_required
 def delete_scheduler_item(item_id):

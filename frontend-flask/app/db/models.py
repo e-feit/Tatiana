@@ -1,6 +1,8 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
+from app.db.serializer import Serializer
+
 db = SQLAlchemy(session_options={'autocommit': True, 'autoflush': True})
 
 # Здесь все модели, соответствующие таблицам в БД.
@@ -15,7 +17,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(120), nullable=True)
     last_login = db.Column(db.DateTime(), nullable=True)
 
-class Scheduler(db.Model):
+class Scheduler(db.Model, Serializer):
     __tablename__ = 'plan'
 
     id = db.Column(db.Integer, primary_key=True, comment='id строки плана')

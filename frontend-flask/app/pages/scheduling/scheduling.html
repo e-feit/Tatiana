@@ -7,6 +7,28 @@
 <h1>Планирование</h1>
 
 <section>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Устройство</th>
+				<th></th>
+				<th></th>
+				<th>Дни</th>
+			</tr>
+		</thead>
+		<tbody id="table-body">
+			{% for scheduler in schedulers %}
+				<tr>
+					<td>{{ scheduler.pin }}</td>
+					<td>{{ scheduler.ontime }}</td>
+					<td>{{ scheduler.offtime }}</td>
+					<td>{{ scheduler.calendar }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
 	<input type="time" step="1" id="start">
 	<input type="time" step="1" id="end">
 	<select id="type">
@@ -34,7 +56,29 @@
 					type,
 				})
 			});
+			updateTable();
 		});
+
+		async function getSchedulers() {
+			const response = await fetch('/scheduling/all');
+			return response.json();
+		}
+
+		async function updateTable() {
+			const schedulers = await getSchedulers();
+			const table = document.querySelector('#table-body');
+			table.innerHTML = '';
+
+			for (let scheduler of schedulers) {
+				table.innerHTML += `<tr>
+										<td>${scheduler.pin}</td>
+										<td>${scheduler.ontime}</td>
+										<td>${scheduler.offtime}</td>
+										<td>${scheduler.calendar}</td>
+									</tr>`;
+			}
+
+		}
 	})();
 </script>
 
