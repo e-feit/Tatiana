@@ -1,5 +1,4 @@
 # Todo
-* меню
 * bcrypt для паролей
 
 # Требования
@@ -13,7 +12,7 @@ python3 -m venv venv
 . venv/bin/activate
 pip install -r requirements.txt
 ```
-#Production
+# Production
 
 ## Запуск
 Для удобств разработки Фласк поставляется с сервером Werkzeug. Этот сервер предназначен
