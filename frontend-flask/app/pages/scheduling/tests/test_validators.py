@@ -1,22 +1,30 @@
 import pytest
 
-from app.pages.scheduling.scheduling import is_time_valid
+from app.shared.tatiana_exception import TatianaException
+from app.pages.scheduling.scheduling import validate_time
 
-data_provider = [
-    {'input': '',               'expected_is_valid': False},
-    {'input': 'sdfdf',          'expected_is_valid': False},
-    {'input': '1111',           'expected_is_valid': False},
-    {'input': '11:11',          'expected_is_valid': False},
-    {'input': '11:11:1',        'expected_is_valid': False},
-    {'input': '11:gg:11',       'expected_is_valid': False},
-    {'input': 'sdf11:11:11sdf', 'expected_is_valid': False},
-    {'input': '65:00:01',       'expected_is_valid': False},
-    {'input': '-12:34:56',      'expected_is_valid': False},
-
-    {'input': '12:34:56',       'expected_is_valid': True},
-    {'input': '00:00:00',       'expected_is_valid': True},
+valid_times_data_provider = [
+    '12:34:56',
+    '00:00:00'
 ]
 
-@pytest.mark.parametrize('data', data_provider)
-def test_time_validator(data):
-    assert is_time_valid(data['input']) == data['expected_is_valid']
+@pytest.mark.parametrize('input', valid_times_data_provider)
+def test_valid_times(input):
+    validate_time(input)
+
+invalid_times_data_provider = [
+    '',
+    'sdfdf',
+    '1111',
+    '11:11',
+    '11:11:1',
+    '11:gg:11',
+    'sdf11:11:11sdf',
+    '65:00:01',
+    '-12:34:56',
+]
+
+@pytest.mark.parametrize('input', invalid_times_data_provider)
+def test_invalid_times(input):
+    with pytest.raises(TatianaException):
+        validate_time(input)

@@ -4,6 +4,7 @@ import re
 from flask import render_template, Blueprint, request
 from flask_login import login_required
 
+from app.shared.tatiana_exception import TatianaException
 from app.db.models import Scheduler, db
 
 blueprint = Blueprint(__name__, __name__, template_folder='.')
@@ -25,15 +26,9 @@ def index():
 def add_scheduler_item():
     data = request.get_json(force=True)
 
-    start = data['start']
-    end = data['end']
+    start = validate_time(data['start'])
+    end = validate_time(data['end'])
     type = data['end']
-
-    if not is_time_valid(start) or not is_time_valid(end):
-        return json.dumps({
-            'error': True,
-            'message': 'Некорректный формат времени (hh:mm:ss)'
-        }, ensure_ascii=False), 400
 
     scheduler = Scheduler()
     scheduler.calendar = type
@@ -53,18 +48,20 @@ def delete_scheduler_item(item_id):
 def get_all_schedulers():
     return Scheduler.query.all()
 
-def is_time_valid(time):
+def validate_time(time):
     pattern = '^(\d{2}):(\d{2}):(\d{2})$'
     matches = re.search(pattern, time)
 
+    exception = TatianaException('Некорректный формат времени  (hh:mm:ss)')
+
     if not matches:
-        return False
+        raise exception
 
     hours = int(matches.group(1))
     minutes = int(matches.group(2))
     seconds = int(matches.group(3))
 
     if hours > 23 or minutes > 59 or seconds > 59:
-        return False
+        raise exception
 
-    return True
+    return time
