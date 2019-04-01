@@ -30,7 +30,6 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'some secret key'
     app.secret_key = app.config['SECRET_KEY']
-    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.config['JSON_AS_ASCII'] = False
 
     # Здесь должны быть зарегистрированы все blueprints.
@@ -48,9 +47,6 @@ def create_app():
     migrate = Migrate(app, db)
 
     assets = Environment(app)
-    # assets.manifest = False
-    # assets.cache = False
-    # assets.auto_build = True
     assets.url = app.static_url_path
     scss = Bundle(
 
@@ -62,6 +58,7 @@ def create_app():
         'scss/pages/login.scss',
 
         filters='pyscss', output='styles/style.css')
+
     assets.register('scss_all', scss)
 
     app.register_error_handler(TatianaException, handle_error_response)
