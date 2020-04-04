@@ -1,5 +1,7 @@
 from flask import render_template, Blueprint, redirect, flash
 from flask_login import login_user, login_required, current_user, logout_user
+from argon2 import PasswordHasher
+from datetime import datetime
 
 from app import User, db
 from app.pages.login.login_form import LoginForm
@@ -23,8 +25,12 @@ def login():
             create_admin()
 
         user = User.query.filter_by(login = login).first()
-        if user and user.password == password:
+        password_hasher = PasswordHasher()
+        if user and password_hasher.verify(user.password, password):
             login_user(user)
+            user.last_login = datetime.now()
+            db.session.add(user)
+            db.session.flush()
             return redirect('/')
         else:
             flash('Неверный логин или пароль!', 'error')
@@ -38,8 +44,9 @@ def logout():
     return redirect('/login')
 
 def create_admin():
+    password_hasher = PasswordHasher()
     user = User()
     user.login = 'admin'
-    user.password = 'admin'
+    user.password = password_hasher.hash('admin')
     user.username = 'Admin'
     db.session.add(user)

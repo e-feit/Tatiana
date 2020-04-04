@@ -25,7 +25,8 @@ def create_app():
     db_username = os.getenv('TATIANA_DB_USERNAME', 'root')
     db_password = os.getenv('TATIANA_DB_PASSWORD', '')
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + db_username + ':' + db_password + '@' + db_host +'/tatiana?charset=utf8'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + db_username + ':' + db_password + '@' \
+                                            + db_host +'/tatiana?charset=utf8'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['SECRET_KEY'] = 'some secret key'
